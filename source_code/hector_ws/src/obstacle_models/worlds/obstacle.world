@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="custom_world">
+    <!-- 基础环境（地面和光照） -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+  <!-- ========== 主障碍结构 ========== -->
+  <!-- 狭窄通道入口 (尺寸可调节) -->
+  <model name="gate_entrance">
+    <pose>0 0 2.5 0 0 0</pose>
+    <link name="left_pillar">
+      <pose>-1.5 0 0 0 0 0</pose>
+      <visual name="visual">
+        <geometry><box><size>0.3 3 5</size></box></geometry>
+        <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+      </visual>
+    </link>
+    <link name="right_pillar">
+      <pose>1.5 0 0 0 0 0</pose>
+      <visual name="visual">
+        <geometry><box><size>0.3 3 5</size></box></geometry>
+        <material><diffuse>0.2 0.8 0.2 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+
+
+
+
+    <!-- #动态移动的绿色立方体 
+    <model name="moving_box">
+      <pose>-2 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 1 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 1 1</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient></material>  #绿色 
+        </visual>
+      </link>
+      #通过插件实现移动 
+      <plugin name="box_controller" filename="libgazebo_ros_planar_move.so">
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <publishOdometry>true</publishOdometry>
+      </plugin>
+    </model>-->
+  </world>
+</sdf>

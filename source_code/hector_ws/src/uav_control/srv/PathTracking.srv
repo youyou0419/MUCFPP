@@ -1,0 +1,15 @@
+# PathTracking.srv
+# 路径跟踪服务定义
+
+# Request - 发送路径信息
+std_msgs/Header header
+int32 ldr_id
+string[] uav_ids
+uav_control/UAVPath[] uav_paths
+
+---
+
+# Response - 返回执行结果
+bool success
+string message
+float64 execution_time

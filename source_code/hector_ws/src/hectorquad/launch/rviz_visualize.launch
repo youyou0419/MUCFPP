@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="quad_star" type="multiUAV_visualizer" name="multiUAV_visualizer" output="screen"/>
+    <node pkg="quad_star" type="obstacle_monitor" name="obstacle_monitor" output="screen">
+        <rosparam>
+            obstacle_models: ["wall_1", "wall_2", "north_wall", "south_wall", "east_wall", "west_wall"]
+        </rosparam>
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find quad_star)/rviz/visualize.rviz"/>
+</launch>

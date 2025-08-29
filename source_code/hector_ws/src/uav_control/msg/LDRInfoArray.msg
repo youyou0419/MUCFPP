@@ -1,0 +1,1 @@
+uav_control/LDRInfo[] ldr_infos

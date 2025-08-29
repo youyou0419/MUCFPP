@@ -1,0 +1,2 @@
+set(uav_control_MESSAGE_FILES "/home/zya/hector_ws/src/uav_control/msg/DeadlockInfo.msg;/home/zya/hector_ws/src/uav_control/msg/LDRInfo.msg;/home/zya/hector_ws/src/uav_control/msg/LDRInfoArray.msg;/home/zya/hector_ws/src/uav_control/msg/UAVPath.msg;/home/zya/hector_ws/src/uav_control/msg/ResolvedPaths.msg;/home/zya/hector_ws/src/uav_control/msg/ResolutionStatus.msg;/home/zya/hector_ws/src/uav_control/msg/LDRCompletion.msg")
+set(uav_control_SERVICE_FILES "/home/zya/hector_ws/src/uav_control/srv/PathPlan.srv;/home/zya/hector_ws/src/uav_control/srv/PathTracking.srv")

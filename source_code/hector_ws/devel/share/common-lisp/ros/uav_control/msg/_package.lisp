@@ -1,0 +1,19 @@
+(cl:defpackage uav_control-msg
+  (:use )
+  (:export
+   "<DEADLOCKINFO>"
+   "DEADLOCKINFO"
+   "<LDRCOMPLETION>"
+   "LDRCOMPLETION"
+   "<LDRINFO>"
+   "LDRINFO"
+   "<LDRINFOARRAY>"
+   "LDRINFOARRAY"
+   "<RESOLUTIONSTATUS>"
+   "RESOLUTIONSTATUS"
+   "<RESOLVEDPATHS>"
+   "RESOLVEDPATHS"
+   "<UAVPATH>"
+   "UAVPATH"
+  ))
+

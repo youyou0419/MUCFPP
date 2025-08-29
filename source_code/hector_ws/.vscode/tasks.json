@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "catkin build",
+            "type": "shell",
+            "command": "catkin_make -DCMAKE_BUILD_TYPE=Debug",
+            "group": {"kind": "build", "isDefault": true},
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "source env",
+            "type": "shell",
+            "command": "source devel/setup.bash"
+        }
+    ]
+}

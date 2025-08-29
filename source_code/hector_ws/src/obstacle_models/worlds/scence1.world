@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+<world name="simple_narrow_channel">
+
+  <!-- 基础环境 -->
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+  <include>
+    <uri>model://sun</uri>
+  </include>
+
+  <!-- 原有两面平行墙 -->
+  <model name="wall_1" static="true">
+    <pose>0 5.5 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 8 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 8 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+  <model name="wall_2" static="true">
+    <pose>0 -5.5 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 8 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 8 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- 新增外围墙壁 (20m×20m边界) -->
+  <!-- 北墙 -->
+  <model name="north_wall" static="true">
+    <pose>0 10.1 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>20 0.2 2</size> <!-- 宽度20m，厚度0.2m，高度1m -->
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>20 0.2 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient> <!-- 稍深灰色 -->
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- 南墙 -->
+  <model name="south_wall" static="true">
+    <pose>0 -10.1 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>20 0.2 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>20 0.2 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- 东墙 -->
+  <model name="east_wall" static="true">
+    <pose>10.1 0 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 20.4 2</size> <!-- 厚度0.2m，长度20m，高度1m -->
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 20.4 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+  <!-- 西墙 -->
+  <model name="west_wall" static="true">
+    <pose>-10.1 0 1 0 0 0</pose>
+    <link name="link">
+    <inertial>
+        <mass>10000</mass> <!-- 设置极大质量（单位：kg） -->
+        <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+        </inertia>
+    </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 20.4 2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 20.4 2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+    <!-- 动态移动的绿色立方体 -->
+    <model name="moving_box">
+      <pose>-5 5 1 0 0 0</pose>
+      <link name="link">
+        <inertial>
+          <mass>10000</mass> <!-- 改为适当质量 -->
+          <inertia>
+            <ixx>10000</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>10000</iyy> <iyz>0</iyz>
+            <izz>10000</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><box><size>1 1 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 1 2</size></box></geometry>
+          <material>
+            <ambient>0 1 0 1</ambient> <!-- 绿色 -->
+          </material>
+        </visual>
+        <collision name="wheel1">
+    <pose>0.45 0.45 -0.3 0 0 0</pose>
+    <geometry><cylinder><radius>0.1</radius><length>0.05</length></cylinder></geometry>
+    <surface><friction><ode><mu>1000</mu></ode></friction></surface>
+  </collision>
+  <collision name="wheel2">
+    <pose>-0.45 0.45 -0.3 0 0 0</pose>
+    <geometry><cylinder><radius>0.1</radius><length>0.05</length></cylinder></geometry>
+  </collision>
+  <collision name="wheel3">
+    <pose>0.45 -0.45 -0.3 0 0 0</pose>
+    <geometry><cylinder><radius>0.1</radius><length>0.05</length></cylinder></geometry>
+  </collision>
+  <collision name="wheel4">
+    <pose>-0.45 -0.45 -0.3 0 0 0</pose>
+    <geometry><cylinder><radius>0.1</radius><length>0.05</length></cylinder></geometry>
+  </collision>
+  <gravity>0</gravity>
+      </link>
+      <!-- 通过插件实现移动 -->
+      <plugin name="box_controller" filename="libgazebo_ros_planar_move.so">
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <publishOdometry>true</publishOdometry>
+      </plugin>
+    </model>
+</world>
+    </sdf>

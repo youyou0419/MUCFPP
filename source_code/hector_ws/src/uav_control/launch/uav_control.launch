@@ -1,0 +1,240 @@
+<launch>
+  <node pkg="quad_star" type="JPS_planner.py" name="JPS_planner" output="screen" />
+  <node pkg="uav_control" type="multi_uav_mission_starter.py" name="multi_uav_mission_starter" output="screen" />
+  <node pkg="uav_control" type="Deadlock_detector" name="Deadlock_detector" output="screen" />
+    <node pkg="uav_control" type="deadlock_resolver" name="deadlock_resolver" output="screen" />
+ <node pkg="uav_control" type="ldr_resolver.py" name="ldr_resolver" output="screen" />
+ <node pkg="uav_control" type="UAVTrackingController.py" name="UAVTrackingController" output="screen" />
+  <!-- 无人机1 -->
+  <group ns="uav1">
+    <node pkg="uav_control" 
+          type="singleGoPose"
+          name="singleGoPose"
+          output="screen">
+      <param name="model_name" value="uav1"/>
+      <remap from="/uav1/singleGoPose/cmd_vel_pref" to="/uav1/cmd_vel_pref"/>
+      <remap from="/uav1/singleGoPose/target_pose" to="/uav1/target_pose"/>
+    </node>
+        <!-- <node pkg="uav_control" 
+          type="singleTrackingPose"
+          name="singleTrackingPose"
+          output="screen">
+      <param name="model_name" value="uav1"/>
+      <remap from="/uav1/singleTrackingPose/cmd_vel" to="/uav1/cmd_vel"/>
+      <remap from="/uav1/singleTrackingPose/target_tracking_pose" to="/uav1/target_tracking_pose"/>
+    </node> -->
+    <node pkg="uav_control" 
+          type="uav_path_tracker" 
+          name="uav_path_tracker" 
+          output="screen">
+        <param name="uav_name" value="uav1" />
+        <!-- <param name="position_tolerance" value="0.18" /> -->
+        <remap from="/uav1/uav_path_tracker/target_pose" to="/uav1/target_pose"/>
+        <remap from="/uav1/uav_path_tracker/path" to="/uav1/path"/>
+    </node>
+    <node pkg="uav_control" 
+          type="mission_control" 
+          name="mission_control"
+          output="screen">
+        <param name="uav_name" value="uav1" />
+        <param name="start_x" value="-9" />
+        <param name="start_y" value="-9" />
+        <param name="goal_x" value="9" />
+        <param name="goal_y" value="9" />
+        <remap from="/uav1/mission_control/start_mission" to="/uav1/start_mission"/>
+        <remap from="/uav1/mission_control/path" to="/uav1/path"/>
+    </node>
+    <node pkg="orca_navigation" 
+          type="publishNeighbors" 
+          name="publishNeighbors"
+          output="screen">
+        <param name="uav_name" value="uav1" />
+        <param name="uav_index" value="1" />
+    </node>
+    <node pkg="orca_navigation" 
+          type="orca_main" 
+          name="orca_main"
+          output="screen">
+          <param name="uav_name" value="uav1" />
+          <remap from="/uav1/orca_main/cmd_vel_pref" to="/uav1/cmd_vel_pref"/>
+          <remap from="/uav1/orca_main/neighbors" to="/uav1/neighbors"/>
+          <remap from="/uav1/orca_main/cmd_vel" to="/uav1/cmd_vel"/>
+          <remap from="/uav1/orca_main/needstop" to="/uav1/needstop"/>
+    </node>
+  </group>
+
+
+
+<!-- 无人机2 -->
+  <group ns="uav2">
+    <node pkg="uav_control" type="singleGoPose" name="singleGoPose" output="screen">
+      <param name="model_name" value="uav2"/>
+      <remap from="/uav2/singleGoPose/cmd_vel_pref" to="/uav2/cmd_vel_pref"/>
+      <remap from="/uav2/singleGoPose/target_pose" to="/uav2/target_pose"/>
+    </node>
+      <!-- 轨迹跟踪 -->
+        <node pkg="uav_control" 
+          type="uav_path_tracker" 
+          name="uav_path_tracker" 
+          output="screen">
+        <param name="uav_name" value="uav2" />
+        <!-- <param name="position_tolerance" value="0.18" /> -->
+        <remap from="/uav2/uav_path_tracker/target_pose" to="/uav2/target_pose"/>
+        <remap from="/uav2/uav_path_tracker/path" to="/uav2/path"/>
+    </node>
+
+        <!-- <node pkg="uav_control" 
+          type="singleTrackingPose"
+          name="singleTrackingPose"
+          output="screen">
+      <param name="model_name" value="uav2"/>
+      <remap from="/uav2/singleTrackingPose/cmd_vel" to="/uav2/cmd_vel"/>
+      <remap from="/uav2/singleTrackingPose/target_tracking_pose" to="/uav2/target_tracking_pose"/>
+    </node> -->
+    <!-- 任务控制 -->
+    <node pkg="uav_control" 
+          type="mission_control" 
+          name="mission_control"
+          output="screen">
+        <param name="uav_name" value="uav2" />
+        <param name="start_x" value="9.0" />
+        <param name="start_y" value="9.0" />
+        <param name="goal_x" value="-9.0" />
+        <param name="goal_y" value="-9.0" />
+        <remap from="/uav2/mission_control/start_mission" to="/uav2/start_mission"/>
+        <remap from="/uav2/mission_control/path" to="/uav2/path"/>
+    </node>
+    <node pkg="orca_navigation" 
+          type="publishNeighbors" 
+          name="publishNeighbors"
+          output="screen">
+        <param name="uav_name" value="uav2" />
+        <param name="uav_index" value="2" />
+    </node>
+    <node pkg="orca_navigation" 
+          type="orca_main" 
+          name="orca_main"
+          output="screen">
+          <param name="uav_name" value="uav2" />
+          <remap from="/uav2/orca_main/cmd_vel_pref" to="/uav2/cmd_vel_pref"/>
+          <remap from="/uav2/orca_main/neighbors" to="/uav2/neighbors"/>
+          <remap from="/uav2/orca_main/cmd_vel" to="/uav2/cmd_vel"/>
+          <remap from="/uav2/orca_main/needstop" to="/uav2/needstop"/>
+    </node>
+  </group>
+
+
+
+  <!-- 无人机3 -->
+  <group ns="uav3">
+    <node pkg="uav_control" type="singleGoPose" name="singleGoPose" output="screen">
+      <param name="model_name" value="uav3"/>
+      <remap from="/uav3/singleGoPose/cmd_vel_pref" to="/uav3/cmd_vel_pref"/>
+      <remap from="/uav3/singleGoPose/target_pose" to="/uav3/target_pose"/>
+    </node>
+    <!-- 轨迹跟踪 -->
+        <node pkg="uav_control" 
+          type="uav_path_tracker" 
+          name="uav_path_tracker" 
+          output="screen">
+        <param name="uav_name" value="uav3" />
+        <!-- <param name="position_tolerance" value="0.18" /> -->
+        <remap from="/uav3/uav_path_tracker/target_pose" to="/uav3/target_pose"/>
+        <remap from="/uav3/uav_path_tracker/path" to="/uav3/path"/>
+    </node>
+ 
+    <!-- <node pkg="uav_control" type="singleTrackingPose" name="singleTrackingPose" output="screen">
+      <param name="model_name" value="uav3"/>
+      <remap from="/uav3/singleTrackingPose/cmd_vel" to="/uav3/cmd_vel"/>
+      <remap from="/uav3/singleTrackingPose/target_tracking_pose" to="/uav3/target_tracking_pose"/>
+    </node> -->
+    <!-- 任务控制 -->
+    <node pkg="uav_control" 
+          type="mission_control" 
+          name="mission_control"
+          output="screen">
+        <param name="uav_name" value="uav3" />
+        <param name="start_x" value="9.0" />
+        <param name="start_y" value="-9.0" />
+        <param name="goal_x" value="-9.0" />
+        <param name="goal_y" value="9.0" />
+        <remap from="/uav3/mission_control/start_mission" to="/uav3/start_mission"/>
+        <remap from="/uav3/mission_control/path" to="/uav3/path"/>
+    </node>
+        <node pkg="orca_navigation" 
+          type="publishNeighbors" 
+          name="publishNeighbors"
+          output="screen">
+        <param name="uav_name" value="uav3" />
+        <param name="uav_index" value="3" />
+    </node>
+    <node pkg="orca_navigation" 
+          type="orca_main" 
+          name="orca_main"
+          output="screen">
+          <param name="uav_name" value="uav3" />
+          <remap from="/uav3/orca_main/cmd_vel_pref" to="/uav3/cmd_vel_pref"/>
+          <remap from="/uav3/orca_main/neighbors" to="/uav3/neighbors"/>
+          <remap from="/uav3/orca_main/cmd_vel" to="/uav3/cmd_vel"/>
+          <remap from="/uav3/orca_main/needstop" to="/uav3/needstop"/>
+          
+    </node>
+  </group>
+
+  <group ns="uav4">
+    <node pkg="uav_control" type="singleGoPose" name="singleGoPose" output="screen">
+      <param name="model_name" value="uav4"/>
+      <remap from="/uav4/singleGoPose/cmd_vel_pref" to="/uav4/cmd_vel_pref"/>
+      <remap from="/uav4/singleGoPose/target_pose" to="/uav4/target_pose"/>
+    </node>
+   <!-- 轨迹跟踪 -->
+        <node pkg="uav_control" 
+          type="uav_path_tracker" 
+          name="uav_path_tracker" 
+          output="screen">
+        <param name="uav_name" value="uav4" />
+        <!-- <param name="position_tolerance" value="0.18" /> -->
+        <remap from="/uav4/uav_path_tracker/target_pose" to="/uav4/target_pose"/>
+        <remap from="/uav4/uav_path_tracker/path" to="/uav4/path"/>
+    </node>
+            <!-- <node pkg="uav_control" 
+          type="singleTrackingPose"
+          name="singleTrackingPose"
+          output="screen">
+      <param name="model_name" value="uav4"/>
+      <remap from="/uav4/singleTrackingPose/cmd_vel" to="/uav4/cmd_vel"/>
+      <remap from="/uav4/singleTrackingPose/target_tracking_pose" to="/uav4/target_tracking_pose"/>
+    </node> -->
+    <!-- 任务控制 -->
+    <node pkg="uav_control" 
+          type="mission_control" 
+          name="mission_control"
+          output="screen">
+        <param name="uav_name" value="uav4" />
+        <param name="start_x" value="-9.0" />
+        <param name="start_y" value="9.0" />
+        <param name="goal_x" value="9.0" />
+        <param name="goal_y" value="-9.0" />
+        <remap from="/uav4/mission_control/start_mission" to="/uav4/start_mission"/>
+        <remap from="/uav4/mission_control/path" to="/uav4/path"/>
+    </node>
+        <node pkg="orca_navigation" 
+          type="publishNeighbors" 
+          name="publishNeighbors"
+          output="screen">
+        <param name="uav_name" value="uav4" />
+        <param name="uav_index" value="4" />
+    </node>
+    <node pkg="orca_navigation" 
+          type="orca_main" 
+          name="orca_main"
+          output="screen">
+          <param name="uav_name" value="uav4" />
+          <remap from="/uav4/orca_main/cmd_vel_pref" to="/uav4/cmd_vel_pref"/>
+          <remap from="/uav4/orca_main/neighbors" to="/uav4/neighbors"/>
+          <remap from="/uav4/orca_main/cmd_vel" to="/uav4/cmd_vel"/>
+          <remap from="/uav4/orca_main/needstop" to="/uav4/needstop"/>
+    </node>
+      </group>
+
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/zya/hector_ws/devel
+
+Name: hector_quadrotor_controller_gazebo
+Description: Description of hector_quadrotor_controller_gazebo
+Version: 0.3.5
+Cflags: -I/home/zya/hector_ws/src/hector-quadrotor-noetic-main/hector_quadrotor/hector_quadrotor_controller_gazebo/include
+Libs: -L${prefix}/lib -lhector_quadrotor_controller_gazebo
+Requires: gazebo_ros_control hector_quadrotor_controller

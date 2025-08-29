@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find obstacle_models)/worlds/scence1.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <include file="$(find hectorquad)/launch/spawn_multiple_quadrotors.launch" />
+  <node name="reset_env" pkg="rostopic" type="rostopic" 
+      args="pub /gazebo/reset_simulation std_msgs/Empty" 
+      output="screen" />
+  <include file="$(find hectorquad)/launch/rviz_visualize.launch" />
+  <node name="move_box" pkg="obstacleControl" type="move_box.py" output="screen"/> # 这是用来控制障碍物自动移动
+  <node pkg="quad_star" type="moving_box_visualizer" name="moving_box_visualizer" output="screen" />
+  <!-- 在终端输入这两段命令，可以重置：rosservice call /gazebo/reset_simulation "{}"  # 完全重置仿真（包括时间）
+                                  rosservice call /gazebo/reset_world "{}"       # 仅重置模型位姿 -->
+</launch>

@@ -1,0 +1,9 @@
+# 请求消息
+float32 start_x
+float32 start_y
+float32 goal_x
+float32 goal_y
+---
+# 响应消息
+bool success
+string message

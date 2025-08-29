@@ -1,0 +1,8 @@
+prefix=/home/zya/hector_ws/install
+
+Name: quad_star
+Description: Description of quad_star
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: rospy geometry_msgs message_runtime

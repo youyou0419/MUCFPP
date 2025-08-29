@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS Debug: singleTrackingPose",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/zya/hector_ws/devel/lib/uav_control/singleTrackingPose",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/zya/hector_ws",
+            "environment": [
+                {"name": "ROS_MASTER_URI", "value": "http://localhost:11311"},
+                {"name": "ROS_PACKAGE_PATH", "value": "${env:ROS_PACKAGE_PATH}"}
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {"text": "-enable-pretty-printing", "ignoreFailures": true}
+            ],
+            "preLaunchTask": "catkin build",
+            "postDebugTask": "source env"
+        }
+    ]
+}
