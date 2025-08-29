@@ -11,14 +11,14 @@ The following presents the simulation results of **four different methods**, eac
 
 ---
 
-## Planner 2：Method [18] in manuscript
+## Planner 2：(The second method listed in TableII of the manuscript)
 | scenario 1 w/o Dyn. obs | scenario 1 w/ Dyn. obs| scenario 2 w/o Dyn. obs | scenario 2 w/ Dyn. obs |
 | ------ | ------ | ------ | ------ |
 | ![](gif/orca_scen1_sta.gif) | ![](gif/orca_scen1_dyn.gif) | ![](gif/orca_scen2_sta.gif) | ![](gif/orca_scen2_dyn.gif) |
 
 ---
 
-## Planner 3：Method [37] in manuscript
+## Planner 3：The third method listed in TableII of the manuscript
 | scenario 1 w/o Dyn. obs | scenario 1 w/ Dyn. obs| scenario 2 w/o Dyn. obs | scenario 2 w/ Dyn. obs |
 | ------ | ------ | ------ | ------ |
 | ![](gif/ecbs_scen1_sta.gif) | ![](gif/ecbs_scen1_dyn.gif) | ![](gif/ecbs_scen2_sta.gif) | ![](gif/ecbs_scen2_dyn.gif) |
